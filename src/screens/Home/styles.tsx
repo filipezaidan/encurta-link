@@ -13,7 +13,7 @@ export const Logo = styled.Image`
     height: 150;
 `;
 export const ContainerContent = styled.View`
-    margin-top: ${Platform.OS=== 'ios' ? 25 +'%' : 15+'p%'};
+    margin-top: ${Platform.OS=== 'ios' ? 25 +'%' : 15+'%'};
 `;
 export const Title = styled.Text`
     font-size: 35px;
