@@ -1,5 +1,5 @@
-import React from 'react';
-import { TouchableWithoutFeedback, Keyboard,  KeyboardAvoidingView, Platform } from 'react-native';
+import React, { useState } from 'react';
+import { TouchableWithoutFeedback, Keyboard,  KeyboardAvoidingView, Platform, Modal } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient'
 
 import { Feather } from '@expo/vector-icons';
@@ -19,8 +19,17 @@ import {
     SubTitle,
     Title
 } from './styles';
+import ModalLink from '../../components/ModalLink';
 
 export default function Home(){
+    const [link, setLink ] = useState<string>('');
+    const [modalVisible, setModalVisible] = useState<boolean>(false);
+
+    function handleSortLink(){
+        //('Link gerado: '+ link)
+        setModalVisible( (value) => !value);
+    }
+
     return(
         <TouchableWithoutFeedback onPress={ () => Keyboard.dismiss()}>
 
@@ -72,10 +81,14 @@ export default function Home(){
                                 autoCapitalize='none'
                                 autoCorrect={false}
                                 keyboardType='url'
+                                value={link}
+                                OnChangeText={ (text) => setLink(text)}
                                 />
                         </ContainerInput>
 
-                        <ButtonLink>
+                        <ButtonLink 
+                            onPress={handleSortLink}
+                        >
                             <ButtonLinkText>
                                 Gerar Link
                             </ButtonLinkText>
@@ -84,6 +97,15 @@ export default function Home(){
                     </ContainerContent>
 
                 </KeyboardAvoidingView>
+
+                <Modal
+                    visible={true}
+                    transparent
+                    animationType='slide'
+                    
+                >
+                    <ModalLink/>
+                </Modal>
             </LinearGradient>
         </TouchableWithoutFeedback>
     );
