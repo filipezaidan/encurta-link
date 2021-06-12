@@ -1,39 +1,53 @@
 import React from 'react';
-import { Container, LinkArea, LongUrl, ModalContainer, ShortLinkArea, ShortLinkUrl , Title } from './styles';
+import { Container, LinkArea, LongUrl, ModalContainer, ShortLinkArea, ShortLinkUrl , Header, Title, ViewContainer} from './styles';
 import { TouchableOpacity } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 
-export default function ModalLink(){
+
+interface ModalProps{
+    onClose: () => void;
+}
+
+export default function ModalLink({onClose}: ModalProps ){
     return(
         <ModalContainer>
+            <ViewContainer onPress={onClose}/>
             <Container>
-                <TouchableOpacity>
-                    <Feather
-                    name='x'
-                    color='#212743'
-                    size={30}
-                    />
-                </TouchableOpacity>
-                <TouchableOpacity>
-                    <Feather
-                    name='share'
-                    color='#212743'
-                    size={30}
-                    />
-                </TouchableOpacity>
 
+                <Header>
+
+                    <TouchableOpacity
+                        onPress={onClose}
+                    >
+                        <Feather
+                        name='x'
+                        color='#212743'
+                        size={30}
+                        />
+                    </TouchableOpacity>
+                    <TouchableOpacity>
+                        <Feather
+                        name='share'
+                        color='#212743'
+                        size={30}
+                        />
+                    </TouchableOpacity>
+
+                </Header>
                 <LinkArea>
                     <Title>
                         Link encurtado
                     </Title>
 
                     <LongUrl>
-                        https://www.google.com
+                        https://www.google.com 
                     </LongUrl>
 
-                    <ShortLinkArea>
-                        <ShortLinkUrl>
-
+                    <ShortLinkArea
+                        activeOpacity={1}
+                    >
+                        <ShortLinkUrl numberOfLines={1}>
+                            https:teste.bit.com
                         </ShortLinkUrl>
 
                         <Feather

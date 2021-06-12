@@ -30,6 +30,9 @@ export default function Home(){
         setModalVisible( (value) => !value);
     }
 
+    function handleOnCloseModal(){
+        setModalVisible( (value) => !value)
+    }
     return(
         <TouchableWithoutFeedback onPress={ () => Keyboard.dismiss()}>
 
@@ -99,12 +102,12 @@ export default function Home(){
                 </KeyboardAvoidingView>
 
                 <Modal
-                    visible={true}
+                    visible={modalVisible}
                     transparent
                     animationType='slide'
                     
                 >
-                    <ModalLink/>
+                    <ModalLink onClose={handleOnCloseModal}/>
                 </Modal>
             </LinearGradient>
         </TouchableWithoutFeedback>
